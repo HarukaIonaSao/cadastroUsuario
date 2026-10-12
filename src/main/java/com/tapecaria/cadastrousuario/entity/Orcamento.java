@@ -7,8 +7,6 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name= "tb_orcamento")
-@Getter
-@Setter
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -25,13 +23,22 @@ public class Orcamento {
     private BigDecimal metragemManta;
     private BigDecimal metragemEspuma;
 
+    private String servico;         // Mapeia para "descricao" do React
+    private String material;
+    private String cliente;
+
+    private BigDecimal metragemTecido;
+    private BigDecimal metragemManta;
+    private BigDecimal metragemEspuma;
+
     private BigDecimal precoMetroTecido;
     private BigDecimal precoMetroManta;
     private BigDecimal precoMetroEspuma;
 
-    private BigDecimal frete;
+    private BigDecimal frete;        
     private BigDecimal valorTotal;
 
+    // Método para calcular o valor total com validação defensiva contra nulls
     public void calcularValorTotal() {
         BigDecimal totalTecido = (metragemTecido != null && precoMetroTecido != null)
                 ? metragemTecido.multiply(precoMetroTecido) : BigDecimal.ZERO;
@@ -42,11 +49,11 @@ public class Orcamento {
         BigDecimal totalEspuma = (metragemEspuma != null && precoMetroEspuma != null)
                 ? metragemEspuma.multiply(precoMetroEspuma) : BigDecimal.ZERO;
 
-        BigDecimal valorFrete = (frete != null) ? frete : BigDecimal.ZERO;
+        BigDecimal valorDiversos = (frete != null) ? frete : BigDecimal.ZERO;
 
         this.valorTotal = totalTecido
                 .add(totalManta)
                 .add(totalEspuma)
-                .add(valorFrete);
+                .add(valorDiversos);
     }
 }
