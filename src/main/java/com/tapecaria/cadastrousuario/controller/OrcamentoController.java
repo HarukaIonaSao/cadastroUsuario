@@ -17,6 +17,9 @@ public class OrcamentoController {
     @Autowired
     private OrcamentoRepository orcamentoRepository;
 
+    @Autowired
+    private OrcamentoService orcamentoService;
+  
     @PostMapping
     public Orcamento criarOrcamento(@RequestBody Orcamento orcamento){
         return orcamentoRepository.save(orcamento);
