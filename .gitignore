@@ -27,6 +27,15 @@ target/
 /.nb-gradle/
 build/
 !**/src/main/**/build/
+
+# ==========================================
+# Configurações de Ambiente e Propriedades
+# ==========================================
+src/main/resources/application.properties
+src/main/resources/application-*.properties
+src/main/resources/application-*.yml
+src/main/resources/application-*.yaml
+
 !**/src/test/**/build/
 
 ### VS Code ###
